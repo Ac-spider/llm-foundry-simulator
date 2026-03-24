@@ -338,18 +338,16 @@ LLM_Foundry_Simulator/
 │   └── stage5_align/         # 对齐
 ├── configs/                  # 配置文件
 ├── tests/                    # 测试套件
-├── reference_resource/       # CS336 参考实现
-│   ├── Assignment1-basics/
-│   ├── Assignment2-system/
-│   ├── Assignment3-scaling/
-│   ├── Assignment4-data/
-│   └── Assignment5-alignment/
+├── scripts/                  # 实用脚本（数据下载等）
+├── reproduce/                # 复现脚本与预期输出
 ├── docs/                     # 文档
 │   └── plans/                # 实现计划
 ├── run.py                    # 主入口
 ├── pyproject.toml            # 项目配置
 └── README.md                 # 本文件
 ```
+
+> CS336 原始作业参考实现见：[Stanford-CS336-LvxSeraph](https://github.com/Ac-spider/Stanford-CS336-LvxSeraph)
 
 ## 开发指南
 
