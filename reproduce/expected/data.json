@@ -1,0 +1,24 @@
+{
+    "stage": "data",
+    "description": "Data quality pipeline with Gopher filtering and deduplication",
+    "metrics": {
+        "documents_input": 100000,
+        "documents_output": 65000,
+        "retention_rate": 0.65,
+        "duplicate_ratio": 0.15,
+        "quality_score_mean": 0.72,
+        "tokens_output": 16777216
+    },
+    "files": [
+        "filtered_documents.jsonl",
+        "quality_scores.json",
+        "dedup_hashes.txt",
+        "pipeline_report.yaml"
+    ],
+    "thresholds": {
+        "max_time_seconds": 300,
+        "min_retention_rate": 0.5,
+        "max_duplicate_ratio": 0.25,
+        "min_quality_score": 0.6
+    }
+}

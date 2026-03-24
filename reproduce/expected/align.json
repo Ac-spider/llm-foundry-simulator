@@ -1,0 +1,37 @@
+{
+    "stage": "align",
+    "description": "Alignment training with SFT, DPO, and GRPO methods",
+    "metrics": {
+        "sft": {
+            "final_loss": 1.45,
+            "steps": 500,
+            "learning_rate": 5e-05
+        },
+        "dpo": {
+            "final_loss": 0.85,
+            "steps": 300,
+            "beta": 0.1
+        },
+        "grpo": {
+            "final_reward": 0.72,
+            "steps": 200,
+            "kl_penalty": 0.01
+        },
+        "inference_backend": "vllm",
+        "total_training_time_minutes": 45
+    },
+    "files": [
+        "sft_checkpoint.pt",
+        "dpo_checkpoint.pt",
+        "grpo_checkpoint.pt",
+        "alignment_metrics.jsonl",
+        "eval_results.json"
+    ],
+    "thresholds": {
+        "max_time_minutes": 90,
+        "sft_loss_range": [1.0, 2.0],
+        "dpo_loss_range": [0.5, 1.5],
+        "grpo_reward_min": 0.5,
+        "inference_fallback_acceptable": true
+    }
+}

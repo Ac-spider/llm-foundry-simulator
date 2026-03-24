@@ -1,0 +1,19 @@
+# Data Pipeline configuration
+# This config defines parameters for data quality filtering
+
+# Input/Output paths
+data:
+  input_file: "data/raw/openwebtext_train.txt"
+  output_file: "data/filtered/openwebtext_filtered.txt"
+
+# Filtering parameters
+filter:
+  min_length: 100
+  max_length: 100000
+  enable_gopher_filter: true
+  enable_deduplication: true
+
+# Logging
+logging:
+  level: "INFO"
+  verbose: true

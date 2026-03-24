@@ -1,0 +1,29 @@
+# LLM Foundry Simulator — 默认训练配置（small scale）
+# 适用于单张 8G 显存 GPU
+
+model:
+  vocab_size: 10000       # BPE tokenizer 词表大小
+  context_length: 256     # 上下文窗口长度（token 数）
+  d_model: 256            # 模型隐层维度
+  num_layers: 4           # Transformer 层数
+  num_heads: 4            # 注意力头数
+  d_ff: 1024              # FFN 中间层维度
+  rope_theta: 10000.0     # RoPE 基础频率
+  use_flash_attn: false   # 禁用 Flash Attention（使用 SDPA）
+
+training:
+  data_path: data/train_tokens.bin  # 分词后的 token 文件路径（二进制格式）
+  device: auto                    # 自动选择设备：cuda > mps > cpu
+  batch_size: 16                  # 每 micro-step 的批次大小
+  gradient_accumulation_steps: 4  # 梯度累积步数（等效批次 = 16 * 4 = 64）
+  max_steps: 10000                # 总训练步数
+  lr: 3.0e-4                      # 学习率峰值（预热结束时）
+  min_lr: 3.0e-5                  # 学习率下界（余弦衰减终点）
+  warmup_steps: 500               # 线性预热步数
+  weight_decay: 0.1               # AdamW 权重衰减系数
+  grad_clip: 1.0                  # 全局梯度范数裁剪上限
+  save_interval: 500              # 每隔多少步保存一次 checkpoint
+  log_interval: 10                # 每隔多少步记录一次 metrics
+
+output:
+  base_dir: results/              # 训练结果根目录（各次运行按 hash 分子目录）

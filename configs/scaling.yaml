@@ -1,0 +1,28 @@
+# LLM Foundry Simulator — 缩放律实验配置
+# 用于 IsoFLOPs + Chinchilla 缩放律分析
+
+scaling:
+  # 实验数据文件路径
+  experiments_file: data/scaling_experiments.json
+
+  # FLOPs预算列表 - 用于外推预测的计算预算点
+  compute_budgets: [1.0e18, 1.0e19, 1.0e20, 1.0e21]
+
+  # 模型尺寸范围（用于生成实验配置）
+  min_params: 1.0e7      # 最小参数量：10M
+  max_params: 1.0e10     # 最大参数量：10B
+
+  # 每个FLOPs预算点的实验数量
+  experiments_per_budget: 5
+
+  # 训练配置（覆盖train.yaml的默认值）
+  training_overrides:
+    max_steps: 5000           # 缩放实验使用较少的步数
+    warmup_steps: 250
+    save_interval: 1000
+    log_interval: 50
+
+output:
+  base_dir: results/          # 结果输出根目录
+  save_plots: true            # 是否保存可视化图表
+  plot_format: png            # 图表格式：png 或 svg
