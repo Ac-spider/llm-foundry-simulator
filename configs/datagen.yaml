@@ -1,0 +1,9 @@
+# configs/datagen.yaml
+# DeepSeek API 数据生成配置
+# 使用前请设置环境变量: export SJTU_API_KEY=your_key
+
+datagen:
+  sft_n: 500              # SFT 指令数据条数
+  grpo_n: 500             # GRPO 数学推理数据条数
+  sft_output: results/datagen/sft_data.jsonl
+  grpo_output: results/datagen/grpo_data.jsonl

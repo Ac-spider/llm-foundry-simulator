@@ -1,0 +1,28 @@
+{
+    "stage": "scaling",
+    "description": "Chinchilla scaling laws analysis with IsoFLOPs + L(N,D) fitting",
+    "metrics": {
+        "chinchilla": {
+            "alpha": 0.34,
+            "beta": 0.28,
+            "A": 406.4,
+            "B": 410.7,
+            "E": 1.69
+        },
+        "isoflops_exponents_sum": 1.02,
+        "experiments_analyzed": 10,
+        "compute_budgets": [1000000000000000000, 10000000000000000000, 100000000000000000000, 1000000000000000000000]
+    },
+    "files": [
+        "scaling_params.json",
+        "scaling_plots/isoflops_scaling.png",
+        "scaling_plots/chinchilla_fit.png"
+    ],
+    "thresholds": {
+        "max_time_seconds": 30,
+        "alpha_range": [0.25, 0.45],
+        "beta_range": [0.20, 0.40],
+        "E_range": [1.5, 2.0],
+        "exponent_sum_tolerance": 0.1
+    }
+}

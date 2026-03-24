@@ -1,0 +1,77 @@
+# Alignment training configuration
+
+# Model configuration
+model:
+  name: "results/train/7bb145fb/checkpoints/step_001000.pt"  # Use trained checkpoint
+  vocab_size: 10000
+  context_length: 256
+  d_model: 256
+  num_layers: 4
+  num_heads: 4
+  d_ff: 1024
+
+# Tokenizer configuration
+tokenizer:
+  path: "results/tokenizer/bpe_tokenizer"  # BPE tokenizer path
+
+# Training method: sft, dpo, or grpo
+method: sft
+
+# SFT configuration
+sft:
+  data_path: "data/sft_train.jsonl"
+  eval_data_path: "data/sft_eval.jsonl"
+  batch_size: 2
+  gradient_accumulation_steps: 2
+  learning_rate: 1e-4
+  num_epochs: 3
+  max_length: 256
+  save_steps: 5
+  eval_steps: 5
+
+# DPO configuration
+dpo:
+  data_path: "data/dpo_train.jsonl"
+  eval_data_path: "data/dpo_eval.jsonl"
+  ref_model_path: "checkpoints/sft_final"
+  batch_size: 2
+  gradient_accumulation_steps: 2
+  learning_rate: 5e-5
+  num_epochs: 1
+  beta: 0.1
+  max_length: 256
+  save_steps: 10
+  eval_steps: 5
+
+# GRPO configuration
+grpo:
+  data_path: "data/grpo_train.jsonl"
+  eval_data_path: "data/grpo_eval.jsonl"
+  batch_size: 4
+  gradient_accumulation_steps: 2
+  learning_rate: 1e-5
+  num_steps: 20
+  group_size: 4
+  max_new_tokens: 64
+  temperature: 1.0
+  epochs_per_rollout: 1
+  eval_every_n_steps: 5
+
+# Inference backend configuration
+inference:
+  backend: "hf"
+  device: "cuda"
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.5
+
+# Output configuration
+output:
+  base_dir: "results/align"
+  run_name: null
+  save_total_limit: 3
+
+# Logging
+logging:
+  use_wandb: false
+  wandb_project: "llm-foundry-align"
+  log_steps: 1

@@ -1,0 +1,47 @@
+# Tokenization configuration
+# This config defines parameters for BPE tokenizer training and encoding
+
+# Input data paths
+data:
+  # Raw text file for training the tokenizer (one document per line)
+  train_file: "data/raw/openwebtext_train.txt"
+  # Optional: validation file for testing tokenizer quality
+  val_file: null
+  # Optional: test file for final evaluation
+  test_file: null
+
+# Tokenizer training parameters
+training:
+  # Target vocabulary size (number of merge operations + initial vocab)
+  vocab_size: 10000
+  # Special tokens to include in vocabulary
+  special_tokens:
+    - "<|endoftext|>"    # End of text marker
+    - "<|padding|>"      # Padding token
+    - "<|unk|>"          # Unknown token
+  # Pre-tokenization pattern (regex for GPT-2 style)
+  # Uses the pattern from Assignment1
+  pre_tokenize_pattern: "'s|'t|'re|'ve|'m|'ll|'d| ?\\p{L}+| ?\\p{N}+| ?[^\\s\\p{L}\\p{N}]+|\\s+(?!\\S)|\\s+"
+
+# Output paths
+output:
+  # Directory to save tokenizer artifacts
+  output_dir: "results/tokenizer"
+  # Name of the saved tokenizer (creates output_dir/{name}/ directory)
+  name: "bpe_tokenizer"
+  # Whether to save intermediate checkpoints during training
+  save_checkpoints: false
+
+# Encoding options (for inference/usage)
+encoding:
+  # Whether to allow unknown tokens or raise error
+  allow_unk: true
+  # Default context length for batch encoding
+  max_length: 1024
+
+# Logging
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+  # Whether to log merge progress during training
+  verbose: true

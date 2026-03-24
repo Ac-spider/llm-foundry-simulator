@@ -1,0 +1,44 @@
+# 运行时产出目录（config hash 命名）
+results/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# 大文件（数据、模型权重）
+*.npy
+*.pt
+*.bin
+*.safetensors
+*.pkl
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+wandb/
+
+# CS336 参考资源（不上传到仓库）
+reference_resource/
+
+# oh-my-claudecode / Claude 工作目录
+.omc/
+.claude/
+
+# 进度/临时文件
+progress.md
+log/
+data/
+outputs/
