@@ -106,8 +106,8 @@ class Trainer:
             vocab_size=self.model_cfg_dict["vocab_size"],
             context_length=self.model_cfg_dict["context_length"],
             d_model=self.model_cfg_dict["d_model"],
-            num_layers=self.model_cfg_dict["n_layers"],
-            num_heads=self.model_cfg_dict["n_heads"],
+            num_layers=self.model_cfg_dict["num_layers"],
+            num_heads=self.model_cfg_dict["num_heads"],
             d_ff=self.model_cfg_dict["d_ff"],
             rope_theta=self.model_cfg_dict.get("rope_theta", 10000.0),
         )
